@@ -1,6 +1,8 @@
 import unittest
-from urllib.error import URLError
-
+try:
+    from urllib.error import URLError
+except ImportError:
+    from urllib2 import URLError
 from mock import Mock, patch
 from suds import WebFault
 

@@ -1,5 +1,8 @@
 import re
-from collections import UserDict
+try:
+    from collections import UserDict
+except ImportError:
+    from .lib.userdict import UserDict
 
 
 class InteractType(object):
@@ -203,7 +206,7 @@ class MergeResult(InteractType):
         failed = None
         if self.error_message:
             failed = re.findall(r'Record ([0-9]*) =', self.error_message)
-            failed = [f.isnumeric() and int(f) or f for f in failed]
+            failed = [f.isdigit() and int(f) or f for f in failed]
 
         return failed or []
 

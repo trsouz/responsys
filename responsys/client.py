@@ -1,5 +1,8 @@
 import logging
-from urllib.error import URLError
+try:
+    from urllib.error import URLError
+except ImportError:
+    from urllib2 import URLError
 
 from suds.client import Client
 from suds import WebFault
